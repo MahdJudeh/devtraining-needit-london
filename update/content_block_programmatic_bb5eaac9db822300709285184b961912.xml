@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="content_block_programmatic">
+    <content_block_programmatic action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <category>general</category>
+        <condition/>
+        <conditional>false</conditional>
+        <frame/>
+        <logged_on>false</logged_on>
+        <name>test-dashboard-card</name>
+        <programmatic_content><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+<j:jelly trim="false" xmlns:j="jelly:core" xmlns:g="glide" xmlns:j2="null" xmlns:g2="null">
+	
+	<style>
+		.dashboards-overview-container { display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; height: 100vh; }
+.dashboards-overview-container .dashboard-overview-header { background-color: #e6e8ea; border-bottom: 1px solid #bdc0c4; box-shadow: rgba(0, 0, 0, 0.08) 0 1px 2px; min-height: 48px; padding: 6px 8px 7px 5px; position: relative; outline: none; }
+.dashboards-overview-container .dashboard-overview-header .title { display: inline-block; font-size: 15px; font-weight: bold; padding: 6px 8px 7px 5px; margin-top: 0; color: #343d47; }
+.dashboards-overview-container .dashboard-overview-header .btn.btn-primary.align-vertical { margin: -3px 0 0 0; }
+.dashboards-overview-container .dashboards-overview-cards-container { overflow: auto; padding: 15px 0 0 18px; flex: 1; }
+.dashboards-overview-container .dashboards-overview-cards-container:after { content: ""; display: block; height: 40px; }
+.dashboards-overview-container .dashboards-overview-cards-container dashboard-overview-card { display: inline-block; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search { border-bottom: 1px solid #bdc0c4; background-color: transparent; margin: 18px 18px 0 18px; position: relative; padding-left: 3px; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboard-overview-tabs { display: inline-block; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboard-overview-tabs .dashboards-overview-tab { border: none; border-bottom: 3px solid #ffffff; border-radius: 0; margin-left: -3px; box-shadow: none; background-color: white; outline: none; height: 54px; font-size: 15px; padding: 6px 8px; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboard-overview-tabs .dashboards-overview-tab:active { border-bottom: 3px solid #278efc; color: #278efc; outline: none; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboard-overview-tabs .dashboards-overview-tab:not(.dashboards-overview-selected-tab):focus { border-bottom: 3px solid #ffffff; color: #278efc; outline: none; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboard-overview-tabs .dashboards-overview-tab:not(.dashboards-overview-selected-tab):hover { border-bottom: 3px solid #bdc0c4; color: #bdc0c4; outline: none; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboard-overview-tabs .dashboards-overview-selected-tab { border-bottom: 3px solid #278efc; color: #278efc; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboards-overview-search-box { display: -moz-box; display: -ms-flexbox; display: -webkit-flex; display: flex; -webkit-flex-direction: row; -ms-flex-direction: row; flex-direction: row; margin: 10px 0; height: 32px; max-width: 350px; text-align: center; border: 1px solid #bdc0c4; padding: 0 5px 0 10px; border-radius: 100px; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboards-overview-search-box.icon-search:before { font-size: 16px; margin: 7px 5px 0 0; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboards-overview-search-box input { width: 100%; border: none; outline: none; overflow: auto; margin-right: 10px; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboards-overview-search-box input::-ms-clear { display: none; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboards-overview-search-box .clear-search-container { color: #81878e; height: 22px; margin: 5px 0 0 0; overflow: auto; }
+.dashboards-overview-container .dashboard-overview-tabs-and-search .dashboards-overview-search-box .clear-search-container:hover, .dashboards-overview-container .dashboard-overview-tabs-and-search .dashboards-overview-search-box .clear-search-container:focus { color: #278efc; background-color: transparent; }
+.dashboards-overview-container .empty-search-result-message { margin: 18px 0 0 20px; }
+.dashboards-overview-container .icon-loading { position: absolute; text-align: center; width: auto; height: auto; top: 50%; font-size: 40px; left: 50%; margin: -20px 0 0 -20px; }
+	</style>
+	
+	
+	<link type="text/css" rel="stylesheet" href="/styles/notification_preference/notification_preference.cssx?v=03-02-2018_1305&amp;c=2018-04-04_09:49:51_f7574b64db462b4c55d29c26f4961913&amp;theme=null"></link>
+	
+	<link type="text/css" rel="stylesheet" href="/styles/sn/concourse/css_includes_concourse.cssx?v=03-02-2018_1305&amp;c=2018-04-04_09:49:51_f7574b64db462b4c55d29c26f4961913&amp;theme=null"></link>
+	
+<dashboard-overview-card ng-repeat="card in filteredCardList | unique: 'sysId'" name="IT Manager" group-name="ITSM" sys-id="02874c6d3b400300b90c4bb534efc4f1" actor="Viewer" active="true" owner="System Administrator" search-term="" thumbnail-layout="{&quot;totalHeight&quot;:0,&quot;panes&quot;:[]}" class="ng-scope ng-isolate-scope">
+	<div tabindex="-1" role="img" aria-label="Thumbnail" class="dashboard-overview-thumbnail"><!-- ngRepeat: pane in $ctrl.panes --><!-- ngIf: $ctrl.emptyThumbnail -->
+		<div ng-if="$ctrl.emptyThumbnail" class="dashboard-overview-empty-thumbnail ng-scope"></div><!-- end ngIf: $ctrl.emptyThumbnail --></div>
+	<div tabindex="-1" aria-label="IT Manager overview" class="dashboard-overview-info">
+		<div class="dashboard-overview-info-group-actor">
+			<div tabindex="-1" aria-label="ITSM" data-toggle="tooltip" data-container="body" data-original-title="ITSM" ng-bind-html="$ctrl.groupName | highlightTerm:$ctrl.searchTerm" class="dashboard-overview-info-group sn-tooltip-basic ng-binding">ITSM
+			</div>
+			<div role="presentation" tabindex="-1" class="dashboard-overview-info-actor ng-binding">
+				Viewer
+			</div>
+		</div>
+		<div class="dashboard-overview-info-name-owner">
+			<div tabindex="-1" role="presentation" data-toggle="tooltip" data-container="body" ng-bind-html="$ctrl.name | highlightTerm:$ctrl.searchTerm" data-original-title="IT Manager" class="dashboard-overview-info-name sn-tooltip-basic ng-binding">
+				IT Manager
+			</div>
+			<div ng-show="$ctrl.owner" role="presentation" tabindex="-1" class="dashboard-overview-info-owner sn-tooltip-basic ng-binding" data-toggle="tooltip" data-container="body" data-original-title="System Administrator" ng-bind="$ctrl.L10N.OWNED_BY.replace('%1', $ctrl.owner) | unescape">Owned by System Administrator</div>
+		</div>
+	</div>
+	</dashboard-overview-card>
+</j:jelly>
+
+
+]]></programmatic_content>
+        <sys_class_name>content_block_programmatic</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2018-11-26 19:58:14</sys_created_on>
+        <sys_id>bb5eaac9db822300709285184b961912</sys_id>
+        <sys_mod_count>8</sys_mod_count>
+        <sys_name>test-dashboard-card</sys_name>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>content_block_programmatic_bb5eaac9db822300709285184b961912</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2018-11-26 20:12:23</sys_updated_on>
+        <two_phase>false</two_phase>
+    </content_block_programmatic>
+</record_update>
